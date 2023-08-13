@@ -75,4 +75,15 @@ const checkAttendanceRecord = () => {
   }
 }
 
+const isCachedId = (id) => {
+  const cache = CacheService.getScriptCache();
+  const isCached = cache.get(id);
+  if (isCached)
+  {
+    return true;
+  }
+  cache.put(id, true, 60 * 10); // 10min
+  return false;
+}
+
 

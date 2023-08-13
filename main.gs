@@ -12,6 +12,16 @@ const firestore = FirestoreApp.getFirestore(dateArray.email, dateArray.key, date
 function doPost(e) {
   const reqObj = JSON.parse(e.postData.getDataAsString());
   const contents = JSON.parse(e.postData.contents);
+
+  // 重複して返信をすることの対策
+  const msgId = reqObj.event.client_msg_id
+  if (isCachedId(msgId)) {
+    // すでに受け取ったリクエストなら終わり
+    console.log(`応答不要。既に受け取ったリクエストのため: msgId=${msgId}`);
+    return
+  }
+
+
   if (contents.event.type === "message") {
     const ts = contents.event.ts;
     const cache = CacheService.getScriptCache();
@@ -217,7 +227,7 @@ function FetchAIAnswerText(prompt, ts) {
     // prompt: prompt,
     // 生成される文章の最大トークン数を指定。単語数というような意味
     // 1000辺り$0.02なので少なくしておく
-    max_tokens: 1500,
+    max_tokens: 1000,
       // 0.5と指定すると生成される文章は入力となる文章に似たものが多くなる傾向があります。
       // 逆に、temperatureフィールドに1.0と指定すると、生成される文章は、より多様なものになる傾向があります。
     temperature: 0.5,
