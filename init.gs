@@ -29,10 +29,17 @@ const FIRESTORE_PRIVATE_KEY_24 = scriptProperties.getProperty('FIRESTORE_PRIVATE
 const FIRESTORE_PRIVATE_KEY_25 = scriptProperties.getProperty('FIRESTORE_PRIVATE_KEY_25')
 const FIRESTORE_PRIVATE_KEY_26 = scriptProperties.getProperty('FIRESTORE_PRIVATE_KEY_26')
 
+const S3_ACCESS_KEY_ID = scriptProperties.getProperty('S3_ACCESS_KEY_ID')
+const S3_BUCKET_NAME = scriptProperties.getProperty('S3_BUCKET_NAME')
+const S3_BUCKET_URL = scriptProperties.getProperty('S3_BUCKET_URL')
+const S3_SECRET_ACCESS_KEY = scriptProperties.getProperty('S3_SECRET_ACCESS_KEY')
+
 const token = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN');
 const apiKey = PropertiesService.getScriptProperties().getProperty('OPENAI_KEY');
 const SPREADSHEET_ID = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
 const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+
+const GOOGLE_DRIVE_ID = PropertiesService.getScriptProperties().getProperty('GOOGLE_DRIVE_ID');
 
 const LEADERS_SOPRANO = ["U04DKNUDZ5E"]
 const LEADERS_ALTO = ["U04CY8S381J"]
